@@ -3,25 +3,49 @@
 A description of this package.
 
 ## Features
-- Scanning for devices.
-- Connected to device.
-- Send value to device.
+- Scan for devices.
+- Connect to device.
+- Write value to device.
 - Disconnect device.
 
 ## Usage
 
 ```swift
+
+//You need to import library on your head class.
 import SatelliteBox-Swift
 
+```
+
+```swift
+
 // You can find all devices in this function.
-BT_Manager().setupScan_BT { [self] (results) in
-             
+BT_Manager().setupScan_BT(completion: <#T##([M_UserBluetooth]) -> Void#>)
+
+// Usage Example
+
+var myBluetoothList      = [M_UserBluetooth]()
+
+func setupInitBluetooth() {
+
+    BT_Manager().setupScan_BT { [self] (results) in
+        
+        if results.count != 0 {
+            
+            myBluetoothList    = results
+
+        } else {
+
+            print("Device not found.")
+        }
+    }
 }
 
-BT_Manager().setupDetectConnected()
+BT_Manager().setupConnect_BT(peripheral: <#T##Peripheral#>, ipDevice: <#T##String#>, rssi: <#T##Int#>, completion: <#T##(M_UserBluetooth) -> Void#>)
 
+BT_Manager().setupWriteValue_BT(peripheral: <#T##Peripheral#>, link: <#T##String#>, completion: <#T##(Bool) -> Void#>)
 
-BT_Manager().setupWriteValue_BT(peripheral: SharedDefaultsData.sharedInstance.sharedPeripheral, link: )
+BT_Manager().setupDidConnect_BT(peripheral: <#T##Peripheral#>, completion: <#T##(Bool) -> Void#>)
     
 ```
 
