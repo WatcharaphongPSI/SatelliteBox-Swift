@@ -35,7 +35,7 @@ dependencies: [
 ```
 
 > Don't forget the Privacy Description in `info.plist`.
-<img src="./Images/PrivacyDescription.png.png">
+<img src="./Images/PrivacyDescription.png">
 
 ## Requirements
 SatelliteBox-Swift requires iOS 13.0+
