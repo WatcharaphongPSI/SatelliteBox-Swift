@@ -2,6 +2,12 @@
 
 A description of this package.
 
+## Features
+- Scanning for devices.
+- Connected to device.
+- Send value to device.
+- Disconnect device.
+
 ## Usage
 
 ```swift
@@ -18,6 +24,9 @@ BT_Manager().setupScan_BT { [self] (results) in
 Simply add the package dependency to your Package.swift and depend on "SatelliteBox-Swift" in the necessary targets:
 ```swift
 dependencies: [
-    .package(url: "", from: "")
+    .package(url: "https://github.com/WatcharaphongPSI/SatelliteBox-Swift.git")
 ]
 ```
+
+## Requirements
+SatelliteBox-Swift requires iOS 13.0+
