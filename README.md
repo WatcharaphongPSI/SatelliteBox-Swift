@@ -16,7 +16,13 @@ import SatelliteBox-Swift
 // You can find all devices in this function.
 BT_Manager().setupScan_BT { [self] (results) in
              
-}    
+}
+
+BT_Manager().setupDetectConnected()
+
+
+BT_Manager().setupWriteValue_BT(peripheral: SharedDefaultsData.sharedInstance.sharedPeripheral, link: )
+    
 ```
 
 ## Swift Package Manager
@@ -27,6 +33,9 @@ dependencies: [
     .package(url: "https://github.com/WatcharaphongPSI/SatelliteBox-Swift.git")
 ]
 ```
+
+> Don't forget the Privacy Description in `info.plist`.
+<img src="./Images/PrivacyDescription.png.png">
 
 ## Requirements
 SatelliteBox-Swift requires iOS 13.0+
