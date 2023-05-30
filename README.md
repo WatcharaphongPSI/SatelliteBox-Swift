@@ -18,11 +18,11 @@ import SatelliteBox-Swift
 
 ```
 
-You can find all devices in this function.
+Scanning for devices in this function.
 
 ```swift
 
-BT_Manager().setupScan_BT(completion: <#T##([M_UserBluetooth]) -> Void#>)
+BT_Manager().setupScan_BT(completion: ([M_UserBluetooth]) -> Void)
 
 ```
 
@@ -30,7 +30,7 @@ Usage Example #1
 
 ```swift
 
-var myBluetoothList      = [M_UserBluetooth]()
+var myBluetoothList      = [M_UserBluetooth]() //
 
 BT_Manager().setupScan_BT { [self] (results) in
     
