@@ -11,16 +11,24 @@ A description of this package.
 ## Usage
 
 You need to import library on your head class.
+
 ```swift
 
 import SatelliteBox-Swift
+
 ```
+
+You can find all devices in this function.
+
 ```swift
 
- You can find all devices in this function.
 BT_Manager().setupScan_BT(completion: <#T##([M_UserBluetooth]) -> Void#>)
 
+```
+
 Usage Example #1
+
+```swift
 
 var myBluetoothList      = [M_UserBluetooth]()
 
@@ -36,10 +44,18 @@ BT_Manager().setupScan_BT { [self] (results) in
     }
 }
 
+```
+
 You can connect devices in this function.
+
+```swift
+
 BT_Manager().setupConnect_BT(peripheral: <#T##Peripheral#>, ipDevice: <#T##String#>, rssi: <#T##Int#>, completion: <#T##(M_UserBluetooth) -> Void#>)
 
- Usage Example #2
+```
+
+```swift
+Usage Example #2
 
 BT_Manager().setupConnectBT(peripheral: peripheral, ipDevice: ipDevice, rssi: rssi) { [self] result in
     
@@ -53,7 +69,9 @@ BT_Manager().setupConnectBT(peripheral: peripheral, ipDevice: ipDevice, rssi: rs
     }
 }
 
- You can Write Value to devices in this function.
+```
+
+You can Write Value to devices in this function.
 BT_Manager().setupWriteValue_BT(peripheral: <#T##Peripheral#>, link: <#T##String#>, completion: <#T##(Bool) -> Void#>)
 
 // Usage Example #3
@@ -84,8 +102,7 @@ BT_Manager().setupDidConnectBT(peripheral: myBluetoothSelecte.peripheral) { [sel
             print("Unable to disconnect.")
     }
 }
-    
-```
+
 
 ## Swift Package Manager
 
