@@ -30,7 +30,7 @@ Usage Example #1
 
 ```swift
 
-var myBluetoothList      = [M_UserBluetooth]() //
+var myBluetoothList      = [M_UserBluetooth]() //Get data from search.
 
 BT_Manager().setupScan_BT { [self] (results) in
     
@@ -50,12 +50,13 @@ You can connect devices in this function.
 
 ```swift
 
-BT_Manager().setupConnect_BT(peripheral: <#T##Peripheral#>, ipDevice: <#T##String#>, rssi: <#T##Int#>, completion: <#T##(M_UserBluetooth) -> Void#>)
+BT_Manager().setupConnect_BT(peripheral: Peripheral, ipDevice: String, rssi: Int, completion: ([M_UserBluetooth]) -> Void)
 
 ```
 
-```swift
 Usage Example #2
+
+```swift
 
 BT_Manager().setupConnectBT(peripheral: peripheral, ipDevice: ipDevice, rssi: rssi) { [self] result in
     
@@ -72,10 +73,14 @@ BT_Manager().setupConnectBT(peripheral: peripheral, ipDevice: ipDevice, rssi: rs
 ```
 
 You can Write Value to devices in this function.
-BT_Manager().setupWriteValue_BT(peripheral: <#T##Peripheral#>, link: <#T##String#>, completion: <#T##(Bool) -> Void#>)
 
-// Usage Example #3
+```swift
+BT_Manager().setupWriteValue_BT(peripheral: Peripheral, link: String, completion: (Bool) -> Void)
+```
 
+Usage Example #3
+
+```swift
 BT_Manager().setupWriteValue_BT(peripheral: SharedDefaultsData.sharedInstance.sharedPeripheral, link: index.userChannelURL) { (status) in
     
     if status == true {
@@ -86,12 +91,16 @@ BT_Manager().setupWriteValue_BT(peripheral: SharedDefaultsData.sharedInstance.sh
         print("Failed to write value.)
     }
 }
+```
 
 You can Didconnect to devices in this function.
-BT_Manager().setupDidConnect_BT(peripheral: <#T##Peripheral#>, completion: <#T##(Bool) -> Void#>)
 
-// Usage Example #4
+```swift
+BT_Manager().setupDidConnect_BT(peripheral: Peripheral, completion: (Bool) -> Void)
+```
 
+Usage Example #4
+```swift
 BT_Manager().setupDidConnectBT(peripheral: myBluetoothSelecte.peripheral) { [self] status in
     
     if status == true {
@@ -102,7 +111,7 @@ BT_Manager().setupDidConnectBT(peripheral: myBluetoothSelecte.peripheral) { [sel
             print("Unable to disconnect.")
     }
 }
-
+```
 
 ## Swift Package Manager
 
