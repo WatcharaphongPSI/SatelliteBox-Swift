@@ -40,7 +40,7 @@ public class BT_Manager: UIViewController {
                 let getName = String(peripheral.name ?? "")
                 let myIpDevice = self.macAddress(advertisementData: advertisementData)
                 
-                if (getName.hasPrefix("S3 AEC")) {
+                if (getName.hasPrefix("S3 Hybrid")) {
                     
                     myBluetoothList = setupAppendBluetoothList(peripheral: peripheral, ipDevice: myIpDevice, rssi: RSSI ?? 0, isConnected: false)
                 }
