@@ -47,10 +47,9 @@ class ViewController: UIViewController {
         myBluetoothSelected = myBluetoothList[1]
     }
     
-    func setupExample() {
+    func setupFunctionExample() {
         
         //Originally, the data was organized in a set of instructions.
-        
         //After selecting the device You can enter a value at "myBluetoothSelected.peripheral", "myBluetoothSelected.ipDevice" and "myBluetoothSelected.rssi" in function
 
         BT_Manager().setupConnect_BT(peripheral: myBluetoothSelected.userPeripheral, ipDevice: myBluetoothSelected.userIpDevice, rssi: myBluetoothSelected.userRSSI) { result in
