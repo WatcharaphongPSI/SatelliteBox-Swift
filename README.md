@@ -10,107 +10,91 @@ A description of this package.
 
 ## Usage
 
-You need to import library on your head class.
-
 ```swift
 
-import SatelliteBox-Swift
+import UIKit
+import SatelliteBox_Swift
 
-```
-
-Scanning for devices in this function.
-
-```swift
-
-BT_Manager().setupScan_BT(completion: ([M_UserBluetooth]) -> Void)
-
-```
-
-Usage Example #1
-
-```swift
-
-var myBluetoothList      = [M_UserBluetooth]() //Get data from search.
-
-BT_Manager().setupScan_BT { [self] (results) in
+class ViewController: UIViewController {
     
-    if results.count != 0 {
+    var myBluetoothList      = [M_UserBluetooth]()
+    var myBluetoothSelected  : M_UserBluetooth!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func setupScanning() {
         
-        myBluetoothList    = results
+        BT_Manager().setupScan_BT { [self] (results) in
+            
+            myBluetoothList.removeAll()
 
-    } else {
+            if results.count != 0 {
+                
+                myBluetoothList  = results //Save search information to use in various functions.
 
-        print("Device not found.")
+            } else {
+
+                print("Device not found.")
+            }
+        }
     }
-}
-
-```
-
-You can connect devices in this function.
-
-```swift
-
-BT_Manager().setupConnect_BT(peripheral: Peripheral, ipDevice: String, rssi: Int, completion: ([M_UserBluetooth]) -> Void)
-
-```
-
-Usage Example #2
-
-```swift
-
-BT_Manager().setupConnectBT(peripheral: peripheral, ipDevice: ipDevice, rssi: rssi) { [self] result in
     
-    if result.userConnected == true {
+    func setupSelectedExample() {
         
-            print("Connection success.")
-
-    } else {
+        //In this case, the first device selection event is simulated.
+        myBluetoothSelected = myBluetoothList[1]
+    }
+    
+    func setupExample() {
         
-            print("Connection failed.")
+        //Originally, the data was organized in a set of instructions.
+        
+        //After selecting the device You can enter a value at "myBluetoothSelected.peripheral", "myBluetoothSelected.ipDevice" and "myBluetoothSelected.rssi" in function
+
+        BT_Manager().setupConnect_BT(peripheral: myBluetoothSelected.userPeripheral, ipDevice: myBluetoothSelected.userIpDevice, rssi: myBluetoothSelected.userRSSI) { result in
+            
+            if result.userConnected == true {
+                
+                    print("Connection success.")
+
+            } else {
+                
+                    print("Connection failed.")
+            }
+        }
+        
+        //You can deploy the selected data model at "peripheral" by myBluetoothSelected.peripheral
+        //You can take the prepared data cubes. to send to the device at "link"
+        
+        BT_Manager().setupWriteValue_BT(peripheral: myBluetoothSelected.userPeripheral, link: "") { (status) in
+            
+            if status == true {
+
+                print("succeeded in writing the value")
+
+            } else {
+                print("Failed to write value.")
+            }
+        }
+        
+        //You can deploy the selected data model at "peripheral" by myBluetoothSelected.peripheral
+
+        BT_Manager().setupDidConnect_BT(peripheral: myBluetoothSelected.userPeripheral) { status in
+            
+            if status == true {
+                
+                print("Success to disconnect.")
+                
+            } else {
+
+                print("Unable to disconnect.")
+            }
+        }
     }
 }
 
-```
-
-You can Write Value to devices in this function.
-
-```swift
-BT_Manager().setupWriteValue_BT(peripheral: Peripheral, link: String, completion: (Bool) -> Void)
-```
-
-Usage Example #3
-
-```swift
-BT_Manager().setupWriteValue_BT(peripheral: SharedDefaultsData.sharedInstance.sharedPeripheral, link: index.userChannelURL) { (status) in
-    
-    if status == true {
-
-        print("succeeded in writing the value")
-
-    } else {
-        print("Failed to write value.)
-    }
-}
-```
-
-You can Didconnect to devices in this function.
-
-```swift
-BT_Manager().setupDidConnect_BT(peripheral: Peripheral, completion: (Bool) -> Void)
-```
-
-Usage Example #4
-```swift
-BT_Manager().setupDidConnectBT(peripheral: myBluetoothSelecte.peripheral) { [self] status in
-    
-    if status == true {
-
-            print("Success to disconnect.")
-    } else {
-
-            print("Unable to disconnect.")
-    }
-}
 ```
 
 ## Swift Package Manager
